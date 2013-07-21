@@ -13,7 +13,7 @@ title: 曾文超
     {% else %}
       <a href="{{ post.url }}">{{ post.title }}</a>
     {% endif %}
-    <small class="muted pull-right">{{ page.date | date: "%Y-%m-%d" }}</small>
+    <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
     </h4>
       <p>{{post.excerpt}}</p>
     </div>
