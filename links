@@ -1,0 +1,24 @@
+---
+layout: default
+title: 收藏 | 链接
+peralink: links
+---
+
+<div class="page-header">
+  <h1>{{ page.title }}</h1>
+</div>
+
+<ul class="media-list">
+{% for post in site.posts %}
+  <li class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+    {% if post.external != nil %}
+      <span class="label">链接</span><a data-toggle="tooltip" title="{{post.content}}" target="_blank" href="{{ post.external }}">{{ post.title }}</a>
+    {% endif %}
+    <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
+    </h4>
+    </div>
+  </li>
+{% endfor %}
+</ul>
