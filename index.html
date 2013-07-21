@@ -1,16 +1,14 @@
 ---
 layout: default
-title: coding with spice
+title: 曾文超
 ---
-<h2>archive</h2>
-<ul id="archive">
+
+<ul class="media-list">
 {% for post in site.posts %}
-  <li class="post-{{ post.category }}">
-  {% if post.external_url == nil %}
-    <a href="{{ post.url }}">{{ post.title }}</a><abbr>{{ post.date | date_to_string }}</abbr>
-  {% else %}
-    <a href="{{ post.external_url }}">{{ post.title }}</a><abbr>{{ post.date | date_to_string }}</abbr>
-  {% endif %}
+  <li class="media">
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+    </div>
   </li>
 {% endfor %}
 </ul>
