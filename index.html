@@ -9,7 +9,7 @@ title: 曾文超
     <div class="media-body">
       <h4 class="media-heading">
     {% if post.external != nil %}
-      <span class="label">链接</span><a href="{{ post.external }}">{{ post.title }}</a>
+      <span class="label">链接</span><a target="_blank" href="{{ post.external }}">{{ post.title }}</a>
     {% else %}
       <a href="{{ post.url }}">{{ post.title }}</a>
     {% endif %}
