@@ -1,5 +1,6 @@
 ---
-layout: default
-title: my first post
+layout: post
+title: 我的第一个文章
 ---
-my first post.
+
+我的第一个文章
