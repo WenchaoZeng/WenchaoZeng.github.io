@@ -13,8 +13,6 @@
   </head>
   <body>
 
-{{ page.title }}
-
 <div class="navbar">
   <div class="navbar-inner">
     <a class="brand" href="/">曾文超</a>
@@ -26,7 +24,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span9">
-      {{page.content}}
+      {{ content }}
     </div>
     <div class="span3">
       <h3>简介</h3>
@@ -40,6 +38,8 @@
     </div>
   </div>
 </div>
+    
+    {{ page.title }}
     
 <hr />
 <p>&copy;曾文超</p>
