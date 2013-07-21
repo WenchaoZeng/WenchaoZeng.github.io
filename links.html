@@ -10,15 +10,16 @@ peralink: links
 
 <ul class="media-list">
 {% for post in site.posts %}
+{% if post.external != nil %}
   <li class="media">
     <div class="media-body">
       <h4 class="media-heading">
-    {% if post.external != nil %}
-      <span class="label">链接</span><a data-toggle="tooltip" title="{{post.content}}" target="_blank" href="{{ post.external }}">{{ post.title }}</a>
-    {% endif %}
-    <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
+      <span class="label">链接</span>
+      <a data-toggle="tooltip" title="{{post.content}}" target="_blank" href="{{ post.external }}">{{ post.title }}</a>
+      <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
     </h4>
     </div>
   </li>
+v
 {% endfor %}
 </ul>
