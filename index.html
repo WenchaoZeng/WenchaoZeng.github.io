@@ -7,11 +7,14 @@ title: 曾文超
 {% for post in site.posts %}
   <li class="media">
     <div class="media-body">
+      <h4 class="media-heading">
     {% if post.external != nil %}
-      <h4 class="media-heading"><span class="label">链接</span><a href="{{ post.external }}">{{ post.title }}</a></h4>
+      <span class="label">链接</span><a href="{{ post.external }}">{{ post.title }}</a>
     {% else %}
-      <h4 class="media-heading"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+      <a href="{{ post.url }}">{{ post.title }}</a>
     {% endif %}
+    <small class="muted pull-right">{{ page.date | date: "%Y-%m-%d" }}</small>
+    </h4>
       <p>{{post.excerpt}}</p>
     </div>
   </li>
