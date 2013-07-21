@@ -8,7 +8,7 @@ permalink: /links/
   <h1>{{ page.title }}</h1>
 </div>
 
-<ul class="media-list">
+<ul class="media-list" id="links">
 {% for post in site.posts %}
 {% if post.external != nil %}
   <li class="media">
@@ -23,3 +23,7 @@ permalink: /links/
 v
 {% endfor %}
 </ul>
+
+<script>
+  $("#links a")..tooltip();
+</script>
