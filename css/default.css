@@ -2,3 +2,10 @@ body, h1, h2, h3, h4, h5, h6, .navbar .brand, .navbar .nav>li>a
 {
   font-family:微软雅黑!important;
 }
+
+.navbar-inner
+{
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
