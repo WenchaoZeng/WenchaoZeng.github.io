@@ -9,17 +9,13 @@ script: "$('#links a').tooltip({ placement: 'bottom', html: true });"
   <h1>{{ page.title }}</h1>
 </div>
 
-<ul class="media-list" id="links">
+<ul class="unstyled" id="links">
 {% for post in site.posts %}
 {% if post.external != nil %}
-  <li class="media">
-    <div class="media-body">
-      <h4 class="media-heading">
-      <span class="label">链接</span>
-      <a data-toggle="tooltip" title="{{post.content}}" target="_blank" href="{{ post.external }}">{{ post.title }}</a>
-      <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
-    </h4>
-    </div>
+  <li>
+    <span class="label">链接</span>
+    <a data-toggle="tooltip" title="{{post.content}}" target="_blank" href="{{ post.external }}">{{ post.title }}</a>
+    <small class="muted pull-right">{{ post.date | date: "%Y-%m-%d" }}</small>
   </li>
 {% endif %}
 {% endfor %}
