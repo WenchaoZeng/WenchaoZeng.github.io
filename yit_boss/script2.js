@@ -9,6 +9,6 @@ window.onload = function() {
       }
     }, 100);
     
-    $('body').append('.navbar-fixed-top { display: none; } .sidebar, .hide-menu {top:0;} body {padding-top:0;}');
+    $('body').append('<style>.navbar-fixed-top { display: none; } .sidebar, .hide-menu {top:0;} body {padding-top:0;}</style>');
     
 };
