@@ -5,7 +5,6 @@ window.onload = function() {
     }
     
     if (!document.location.href.match(/boss.*yit.com/g)) {
-        alert('Ignore');
         return;
     }
     
