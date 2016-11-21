@@ -1,5 +1,5 @@
 function zwcReady() {
-    if (!$) {
+    if (typeof jQuery == 'undefined') {
         setTimeout(zwcReady, 100);
         return;
     }
