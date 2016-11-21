@@ -1,10 +1,10 @@
 function zwcReady() {
-    if (typeof jQuery == 'undefined') {
+    if (!window.jQuery) {
         setTimeout(zwcReady, 100);
         return;
     }
 
-    $(function() {
+    window.jQuery.ready(function() {
         
         /* 去掉页头 */
         setInterval(function() {
