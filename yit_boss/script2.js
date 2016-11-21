@@ -4,7 +4,9 @@ function zwcReady() {
         return;
     }
 
-    alert('Ready');
+    $(function() {
+        alert('Dom Ready');
+    });
 }
 
 setTimeout(zwcReady, 100);
