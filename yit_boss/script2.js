@@ -1,5 +1,9 @@
 window.onload = function() {
     
+    if (!window.jQuery) {
+        return;
+    }
+    
     alert('Ready');
     
     setInterval(function() {
