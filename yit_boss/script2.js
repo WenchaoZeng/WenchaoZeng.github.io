@@ -6,6 +6,8 @@ function zwcReady() {
 
     window.jQuery.ready(function() {
         
+        alert('ready');
+        
         /* 去掉页头 */
         setInterval(function() {
           var ifr = document.getElementById('ifr');
