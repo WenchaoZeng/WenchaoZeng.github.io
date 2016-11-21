@@ -4,7 +4,9 @@ window.onload = function() {
         return;
     }
     
-    alert(document.location.href);
+    if (!document.location.href.match(/boss.*yit.com/g)) {
+        return;
+    }
     
     /* 调整内容高度 */
     setInterval(function() {
