@@ -33,9 +33,10 @@ window.onload = function() {
     // 开启全部权限
     $('#sidebar>div').attr('style', '');
 };
-
+/*
 function zwcMax() {
     var height = window.innerHeight - 6;
     $(".modal .modal-dialog").attr('style', 'margin:0;width:100%;height:' + height + "px;");
     $(".modal .modal-dialog .modal-body").attr('style', 'max-height:' + height + "px;");
 }
+*/
