@@ -8,6 +8,8 @@ window.onload = function() {
         return;
     }
     
+    alert('test');
+    
     /* 调整内容高度 */
     setInterval(function() {
       var ifr = document.getElementById('ifr');
