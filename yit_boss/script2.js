@@ -35,6 +35,6 @@ window.onload = function() {
 };
 
 function zwcMax() {
-    var height = document.getElementById('ifr').height;
+    var height = window.outerHeight;
     $(".modal .modal-dialog").attr('style', 'margin:0;width:100%;height:' + height + "px;");
 }
