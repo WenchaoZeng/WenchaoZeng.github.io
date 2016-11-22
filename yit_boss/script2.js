@@ -1,7 +1,8 @@
 var oldWindowOnload = window.onload;
 window.onload = function() {
     if (oldWindowOnload) {
-        oldWindowOnload();
+        //oldWindowOnload();
+        alert(oldWindowOnload);
         return;
     }
    
