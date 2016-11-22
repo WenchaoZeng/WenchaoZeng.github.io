@@ -1,10 +1,14 @@
 var oldWindowOnload = window.onload;
+var isScript2Run = false;
 window.onload = function() {
-    alert(oldWindowOnload);
-    if (oldWindowOnload) {
-        //oldWindowOnload();
-        alert(oldWindowOnload);
+    
+    if (isScript2Run) {
         return;
+    }
+    isScript2Run = true;
+    
+    if (oldWindowOnload) {
+        oldWindowOnload();
     }
    
     if (!window.jQuery) {
