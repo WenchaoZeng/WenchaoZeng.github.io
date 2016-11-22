@@ -1,5 +1,9 @@
+var oldWindowOnload = window.onload;
 window.onload = function() {
-    
+    if (oldWindowOnload) {
+        oldWindowOnload();
+    }
+   
     if (!window.jQuery) {
         return;
     }
@@ -25,5 +29,4 @@ window.onload = function() {
     // 开启全部权限
     $('#sidebar>div').attr('style', '');
     */
-    
 };
