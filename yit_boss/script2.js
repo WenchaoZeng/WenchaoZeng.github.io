@@ -35,6 +35,7 @@ window.onload = function() {
 };
 
 function zwcMax() {
-    var height = window.outerHeight;
+    var height = window.innerHeight - 6;
     $(".modal .modal-dialog").attr('style', 'margin:0;width:100%;height:' + height + "px;");
+    $(".modal .modal-dialog .modal-body").attr('style', 'max-height:' + height + "px;");
 }
