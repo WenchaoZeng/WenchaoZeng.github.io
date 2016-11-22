@@ -36,5 +36,5 @@ window.onload = function() {
 
 function zwcMax() {
     var height = document.getElementById('ifr').height;
-    $(".modal .modal-dialog").attr('style', 'width:100%;height:' + height + "px;");
+    $(".modal .modal-dialog").attr('style', 'margin:0;width:100%;height:' + height + "px;");
 }
