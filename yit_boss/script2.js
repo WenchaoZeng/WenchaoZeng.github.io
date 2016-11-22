@@ -33,3 +33,8 @@ window.onload = function() {
     // 开启全部权限
     $('#sidebar>div').attr('style', '');
 };
+
+function zwcMax() {
+    var height = document.getElementById('ifr').height;
+    $(".modal .modal-dialog").attr('style', 'width:100%;height:' + height + "px;");
+}
