@@ -15,7 +15,7 @@ window.onload = function() {
         return;
     }
     
-    if (!document.location.href.match(/boss.*yit.com/g)) {
+    if (!document.location.href.match(/boss.*yit.com/g) && !document.location.href.match(/boss.*local.com/g)) {
         return;
     }
     
