@@ -1,0 +1,45 @@
+<meta name="viewport" content="target-densitydpi=92,width=480">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<style>
+    * {
+        font-size: 20px;
+    }
+    #input {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 5px;
+    }
+    #render {
+        width: 200px;
+        height: 40px;
+        clear: both;
+        float: right;
+    }
+    #resultContainer {
+        line-height: 40px;
+    }
+</style>
+
+<textarea id="input"></textarea>
+<br />
+<button id="render" onclick="doRender();">计算结果</button>
+<div id="resultContainer">结果: <span id="result"></span></div>
+
+
+<script>
+    document.getElementById("input").focus();
+    function doRender() {
+        var input = document.getElementById("input").value;
+        input = input.replace('×', '*').replace('÷', '/');
+        var expressions = input.split('=');
+        var result = [];
+        expressions.forEach(function(expression) {
+            result.push(eval(expression));
+        });
+        document.getElementById("result").innerHTML = result.join(', ');
+    }
+</script>
