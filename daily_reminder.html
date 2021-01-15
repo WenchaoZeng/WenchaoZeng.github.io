@@ -14,7 +14,6 @@
     <div class="line"></div>
     <div class="time1">{{ currentTime1 }}</div>
     <div class="time2">{{ currentTime2 }}</div>
-    <a v-if="!isfullscreen" v-on:click="fullscreen">全屏</a>
 </div>
 
 <style type="text/css">
@@ -83,7 +82,6 @@ body {
 var app = new Vue({
   el: '#app',
   data: {
-    isfullscreen: false,
     currentDay: 0,
     currentTime1: "",
     currentTime2: "",
@@ -156,19 +154,6 @@ var app = new Vue({
             return value;
         }
         return "0" + value;
-    },
-    fullscreen: function() {
-        var element = document.documentElement;
-        if(element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if(element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-        } else if(element.msRequestFullscreen){
-            element.msRequestFullscreen();
-        } else if(element.webkitRequestFullscreen) {
-            element.webkitRequestFullScreen();
-        }
-        this.isfullscreen = true;
     },
   },
   created: function() {
