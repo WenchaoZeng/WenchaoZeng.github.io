@@ -146,7 +146,7 @@ var app = new Vue({
         }
     },
     timeUpdate: function() {
-        let current = new Date();
+        var current = new Date();
         this.currentTime1 = current.getFullYear() + '年' + this.formatNumber((current.getMonth() + 1)) + '月' + this.formatNumber(current.getDate()) + '日';
         this.currentTime2 = this.formatNumber(current.getHours()) + ":" + this.formatNumber(current.getMinutes()) + ":" + this.formatNumber(current.getSeconds());
         this.checkDayChange();
