@@ -20,10 +20,9 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Microsoft Yahei";
+    font-family: "Arial";
 }
 .line {
-    background: #CCCCCC;
     width: 0.2%;
     height: 100%;
     position: absolute;
@@ -33,7 +32,6 @@ body {
     width: 50%;
     float: left;
     text-align: center;
-    background: white;
 }
 .name {
     margin: 0;
@@ -57,13 +55,8 @@ body {
 }
 .item li div {
     margin: 5px;
-    background-color: #EEEEEE;
-}
-.item li.status2 div {
-    background-color: #a6e22e;
-}
-.item li.status3 div {
-    background-color: #f4bf4f;
+    font-weight: bold;
+    border: 2px solid black;
 }
 .time1, .time2 {
     font-size: 52px;
@@ -76,6 +69,29 @@ body {
     font-size: 100px;
     font-weight: bold;
 }
+
+/* 黑色主题 */
+.line {
+    background: #909090;
+}
+body {
+    color: yellow;
+    background: black;
+}
+.item li.status1 div {
+    border-color: yellow;
+}
+.item li.status2 div {
+    background-color: #a6e22e;
+    color: black;
+    border-color: #a6e22e;
+}
+.item li.status3 div {
+    background-color: #f4bf4f;
+    color: black;
+    border-color: #f4bf4f;
+}
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
