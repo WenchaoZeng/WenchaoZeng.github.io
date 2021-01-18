@@ -66,8 +66,8 @@
         bottom: 5px;
     }
     .time2 {
-        bottom: 80px;
-        font-size: 118px;
+        bottom: 70px;
+        font-size: 160px;
         font-weight: bold;
     }
     .lastDayInfo {
@@ -163,7 +163,6 @@
         },
         checkDayChange: function() {
             var currentDay = new Date().getDate();
-            //var currentDay = new Date().getMinutes();
             if (this.currentDay != currentDay) {
                 if (this.currentDay != -1) {
                     this.updateLastDayInfo();
@@ -182,12 +181,12 @@
             }
         },
         updateLastDayInfo: function() {
-            this.lastDayInfo  = "昨天情况: <br />";
+            this.lastDayInfo  = "昨天: <br />";
             var _this = this;
             this.taskList.forEach(function(task) {
                 _this.lastDayInfo += task.name + ": ";
                 task.items.forEach(function(item) {
-                    _this.lastDayInfo += item.name.replace("隔天", '').replace('+', '');
+                    _this.lastDayInfo += item.name.replace("隔天", '').replace('+钙', '');
                     _this.lastDayInfo += item.status == 2 ? '√' : '×';
                     _this.lastDayInfo += " ";
                 });
@@ -196,8 +195,8 @@
         },
         timeUpdate: function() {
             var current = new Date();
-            this.currentTime1 = current.getFullYear() + '年' + this.formatNumber((current.getMonth() + 1)) + '月' + this.formatNumber(current.getDate()) + '日';
-            this.currentTime2 = this.formatNumber(current.getHours()) + ":" + this.formatNumber(current.getMinutes()) + ":" + this.formatNumber(current.getSeconds());
+            this.currentTime1 = (current.getMonth() + 1) + '月' + current.getDate() + '日';
+            this.currentTime2 = this.formatNumber(current.getHours()) + ":" + this.formatNumber(current.getMinutes());
             this.checkDayChange();
         },
         formatNumber: function(value) {
