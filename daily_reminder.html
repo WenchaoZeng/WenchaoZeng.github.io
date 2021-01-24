@@ -2,7 +2,7 @@
     <div  class="task" v-for="task in taskList">
         <h2 class="name">{{ task.name }}</h2>
         <ul class="item">
-            <li v-for="item in task.items" v-on:click="changeStatus(item)" v-bind:class="'status' + item.status">
+            <li v-for="item in task.items" v-on:click="changeStatus(item)" v-bind:class="'status' + item.status + ' ' + item.class">
                 <div>
                     {{ item.name }}
                     <span v-if="item.status == 2">(√)</span>
@@ -53,6 +53,9 @@
         margin: 0;
         line-height: 140px;
         font-size: 40px;
+    }
+    .item li.milk {
+        width: 33.33%;
     }
     .item li div {
         margin: 5px;
@@ -149,6 +152,21 @@
                     {
                         name: 'D3隔天',
                         status: 1,
+                    },
+                    {
+                        name: '奶',
+                        status: 1,
+                        class: 'milk'
+                    },
+                    {
+                        name: '奶',
+                        status: 1,
+                        class: 'milk'
+                    },
+                    {
+                        name: '奶',
+                        status: 1,
+                        class: 'milk'
                     },
                 ]
             },
