@@ -3,11 +3,7 @@
         <h2 class="name">{{ task.name }}</h2>
         <ul class="item">
             <li v-for="item in task.items" v-on:click="changeStatus(item)" v-bind:class="'status' + item.status + ' ' + item.class">
-                <div>
-                    {{ item.name }}
-                    <span v-if="item.status == 2">(√)</span>
-                    <span v-if="item.status == 3">(×)</span>
-                </div>
+                <div>{{ item.name }}<span v-if="item.status == 2">(√)</span><span v-if="item.status == 3">(×)</span></div>
             </li>
         </ul>
     </div>
@@ -53,6 +49,7 @@
         margin: 0;
         line-height: 140px;
         font-size: 40px;
+        white-space: nowrap;
     }
     .item li.milk {
         width: 33.33%;
