@@ -57,6 +57,9 @@
     .item li.milk {
         width: 33.33%;
     }
+    .item li.d3 {
+        font-size: 34px;
+    }
     .item li div {
         margin: 5px;
         font-weight: bold;
@@ -78,7 +81,7 @@
         position: absolute;
         left: 0px;
         bottom: 0px;
-        font-size: 28px;
+        font-size: 26px;
     }
     .lastDayInfo div {
         padding: 5px;
@@ -115,17 +118,19 @@
         currentDay: -1,
         currentTime1: "",
         currentTime2: "",
-        lastDayInfo: "",
+        lastDayInfo: "昨天: <br />曾天宇: AD× D3√ 奶√ DHA× 奶√ <br />曾天艺: AD× D3√ 奶× 奶× 奶× <br />",
         taskList: [
             {
                 name: '曾天宇',
                 items: [ 
                     {
-                        name: 'AD',
+                        name: 'AD隔天',
+                        class: 'ad',
                         status: 1,
                     },
                     {
-                        name: 'D3隔天',
+                        name: 'D3隔天两粒',
+                        class: 'd3',
                         status: 1,
                     },
                     {
@@ -146,11 +151,13 @@
                 name: '曾天艺',
                 items: [ 
                     {
-                        name: 'AD',
+                        name: 'AD隔天',
+                        class: 'ad',
                         status: 1,
                     },
                     {
-                        name: 'D3隔天',
+                        name: 'D3隔天两粒',
+                        class: 'd3',
                         status: 1,
                     },
                     {
@@ -181,6 +188,7 @@
         },
         checkDayChange: function() {
             var currentDay = new Date().getDate();
+
             if (this.currentDay != currentDay) {
                 if (this.currentDay != -1) {
                     this.updateLastDayInfo();
@@ -188,7 +196,7 @@
             
                 this.taskList.forEach(function(task) {
                     task.items.forEach(function(item) {
-                        if (item.name == 'D3隔天' && item.status == 2) {
+                        if ((item.class == 'd3' || item.class == 'ad') && item.status == 2) {
                             item.status = 3;
                             return;
                         }
