@@ -51,9 +51,6 @@
         font-size: 40px;
         white-space: nowrap;
     }
-    .item li.milk {
-        width: 33.33%;
-    }
     .item li.d3 {
         font-size: 34px;
     }
@@ -62,23 +59,24 @@
         font-weight: bold;
         border: 2px solid black;
     }
-    .time1, .time2 {
-        font-size: 62px;
+    .time1 {
+        font-size: 60px;
         position: absolute;
-        right: 13px;
+        left: 10px;
         bottom: 5px;
     }
     .time2 {
-        bottom: 70px;
+        left: 10px;
+        bottom: 76px;
         font-size: 160px;
+        position: absolute;
         font-weight: bold;
     }
     .lastDayInfo {
-        width: 50%;
         position: absolute;
-        left: 0px;
+        left: 50%;
         bottom: 0px;
-        font-size: 26px;
+        font-size: 22px;
     }
     .lastDayInfo div {
         padding: 5px;
@@ -115,63 +113,61 @@
         currentDay: -1,
         currentTime1: "",
         currentTime2: "",
-        lastDayInfo: "昨天: <br />曾天宇: AD× D3√ 奶√ DHA× 奶√ <br />曾天艺: AD× D3√ 奶× 奶× 奶× <br />",
+        lastDayInfo: "",
         taskList: [
             {
                 name: '曾天宇',
                 items: [ 
                     {
                         name: 'AD隔天',
+                        shortName: "AD",
                         class: 'ad',
                         status: 1,
                     },
                     {
                         name: 'D3隔天两粒',
+                        shortName: "D3",
                         class: 'd3',
                         status: 1,
                     },
                     {
-                        name: '奶+钙',
-                        status: 1,
-                    },
-                    {
-                        name: 'DHA',
-                        status: 1,
-                    },
-                    {
-                        name: '奶+钙',
+                        name: '两杯奶',
+                        shortName: "奶",
                         status: 1,
                     },
                 ]
             },
             {
                 name: '曾天艺',
-                items: [ 
+                items: [
+                    {
+                        name: '消食液(早)',
+                        shortName: "早消",
+                        status: 1,
+                    },
+                    {
+                        name: '消食液(晚)',
+                        shortName: "晚消",
+                        status: 1,
+                    },
                     {
                         name: 'AD隔天',
+                        shortName: "AD",
                         class: 'ad',
                         status: 1,
                     },
                     {
                         name: 'D3隔天两粒',
+                        shortName: "D3",
                         class: 'd3',
                         status: 1,
                     },
                     {
-                        name: '奶',
+                        name: '400奶',
+                        shortName: "奶",
                         status: 1,
-                        class: 'milk'
                     },
-                    {
-                        name: '奶',
-                        status: 1,
-                        class: 'milk'
-                    },
-                    {
-                        name: '奶',
-                        status: 1,
-                        class: 'milk'
-                    },
+
                 ]
             },
         ]
@@ -185,7 +181,6 @@
         },
         checkDayChange: function() {
             var currentDay = new Date().getDate();
-
             if (this.currentDay != currentDay) {
                 if (this.currentDay != -1) {
                     this.updateLastDayInfo();
@@ -209,7 +204,7 @@
             this.taskList.forEach(function(task) {
                 _this.lastDayInfo += task.name + ": ";
                 task.items.forEach(function(item) {
-                    _this.lastDayInfo += item.name.replace("隔天", '').replace('+钙', '');
+                    _this.lastDayInfo += item.shortName;
                     _this.lastDayInfo += item.status == 2 ? '√' : '×';
                     _this.lastDayInfo += " ";
                 });
