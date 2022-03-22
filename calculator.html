@@ -34,13 +34,28 @@
 <script>
     document.getElementById("input").focus();
     function doRender() {
+        document.getElementById("result").innerHTML = "";
         var input = document.getElementById("input").value;
         input = input.replace('×', '*').replace('÷', '/');
         var expressions = input.split('=');
         var result = [];
         expressions.forEach(function(expression) {
-            result.push(eval(expression));
+            
+            // 空表达式
+            if (expression == '') {
+                return;
+            }
+
+            // 渲染表达式结果
+            try {
+                var subResult = eval(expression);
+                result.push(subResult);
+            } catch (error) {
+                // 表达式错误信息
+                result.push(error.message);
+            }
         });
+
         document.getElementById("result").innerHTML = result.join(', ');
     }
 </script>
