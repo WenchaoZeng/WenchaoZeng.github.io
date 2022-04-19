@@ -1,0 +1,356 @@
+<script>
+var userTaskList = [
+    {
+        userName: 'hello',
+        taskName: "不符合三流合一（即发票抬头特批），合同打特批单标记，业务费用包比例按照特批单标记走",
+        startDate: "2022-04-10",
+        endDate: "2022-05-10",
+    },
+    {
+        userName: '人名1',
+        taskName: "任务1",
+        startDate: "2022-04-18",
+        endDate: "2022-04-20",
+    },
+    {
+        userName: '测试:李文思汗',
+        taskName: "任务2",
+        startDate: "2022-04-19",
+        endDate: "2022-04-21",
+    },
+];
+</script>
+
+<div id="app">
+    开始日期: <input type="text" v-model="startDate" />
+    结束日期: <input type="text" v-model="endDate" />
+    <br/>
+    人员:
+    <button v-on:click="checkAllUser">全选/取消</button>
+    <ul id="userList" class="checkList">
+        <li v-for="user in userList" :key="user.name">
+            <label>
+            <input type="checkbox" v-model="user.checked"> {{ user.name }}
+        </label>
+        </li>
+    </ul>
+    <br />
+    任务:
+    <button v-on:click="checkAllTask">全选/取消</button>
+    <ul id="taskList" class="checkList">
+        <li v-for="task in taskList" :key="task.name">
+            <label v-bind:style="{'background-color': task.color}">
+            <input type="checkbox" v-model="task.checked"> {{ task.name }}
+        </label>
+        </li>
+    </ul>
+    <br />
+    <button v-on:click="refreshTable">渲染</button>
+    <div id="table">
+        <ul id="dateList" >
+            <li v-for="date in dateList" class="cell" v-bind:style="{'background-color': date.color}">
+                {{date.day}}
+            </li>
+        </ul>
+        <div class="userTaskDay" v-for="userTaskDay in userTaskDays" :key="userTaskDay.id">
+            <span class="cell">
+            {{ userTaskDay.userName }}
+            </span>
+            <ul>
+                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName">{{day.day}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        width: 3000px;
+        font-family: "Arial";
+    }
+    ul {
+        display: inline-block;
+        padding-left: 0;
+        margin: 5px;
+    }
+    li {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    .checkList li {
+        display: block;
+        margin: 5px;
+    }
+    .checkList li label {
+        padding: 4px;
+    }
+    .checkList li label:hover{
+        cursor: pointer;
+        background-color: #DDDDDD;
+    }
+
+    #table {
+        position: relative;
+    }
+
+    .cell {
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid #DDDDDD;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    #dateList {
+        position: relative;
+        left: 100px;
+        margin: 0;
+    }
+    .userTaskDay {
+        position: relative;
+        margin: 0;
+    }
+    .userTaskDay span {
+        width: 100px;
+        font-size: 14px;
+    }
+    .userTaskDay ul {
+        position: absolute;
+        left: 100px;
+        margin: 0;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        userTaskList: [
+            {
+                userName: 'xx',
+                taskName: "xxx",
+                startDate: "2022-04-10",
+                endDate: "2022-05-10",
+            },
+        ],
+        startDate: "2001-04-01",
+        endDate: "2001-04-01",
+        colorList: [    
+            '#5d8aa8',
+            '#e32636',
+            '#ffbf00',
+            '#9966cc',
+            '#a4c639',
+            '#cd9575',
+            '#915c83',
+            '#008000',
+            '#fbceb1',
+            '#00ffff',
+            '#4b5320',
+            '#b2beb5',
+            '#007fff',
+            '#a52a2a',
+            '#6e7f80',
+            '#ffe135',
+            '#3d2b1f',
+            '#873260',
+        ],
+        userList: [
+            {
+                name: "xx",
+                checked: true,
+            },
+        ],
+        taskList: [
+            {
+                name: "xx",
+                color: "#5d8aa8",
+                checked: true,
+            },
+        ],
+        dateList: [
+            {
+                day: 'x',
+                color: '#CCCCCC'
+            }
+        ],
+        userTaskDays: [
+            {
+                userName: "xx",
+                days: [
+                    {
+                        day: "xx",
+                        taskName: "yy",
+                        color: "#cd9575"
+                    },
+                ],
+            },
+        ],
+      },
+      methods: {
+        checkAllUser: function() {
+            let shouldCheckAll = false;
+            for (let user of this.userList) {
+                if (!user.checked) {
+                    shouldCheckAll = true;
+                    break;
+                }
+            }
+            for (let user of this.userList) {
+                user.checked = shouldCheckAll;
+            }
+        },
+        checkAllTask: function() {
+            let shouldCheckAll = false;
+            for (let task of this.taskList) {
+                if (!task.checked) {
+                    shouldCheckAll = true;
+                    break;
+                }
+            }
+            for (let task of this.taskList) {
+                task.checked = shouldCheckAll;
+            }
+        },
+        refreshTable: function() {
+
+            // 时间维度
+            this.dateList = [];
+            this.loopDays(day => {
+                let dayInfo = {
+                    color: '#FFFFFF',
+                };
+                this.dateList.push(dayInfo);
+
+                let date = new Date(day);
+
+                // 日期
+                dayInfo.day = date.getDate();
+                if (dayInfo.day == '1') {
+                    dayInfo.day = (date.getMonth() + 1) + "/" + dayInfo.day;
+                }
+
+                // 周六日
+                if (date.getDay() == 6 || date.getDay() == 0) {
+                    dayInfo.color = '#CCCCCC';
+                }
+
+                // 今天
+                if ($.datepicker.formatDate('yy-mm-dd', date) == $.datepicker.formatDate('yy-mm-dd', new Date())) {
+                    dayInfo.color = '#fdee00';
+                }
+                
+            });
+
+            // 人员任务
+            this.userTaskDays = [];
+            for (let user of this.userList) {
+                if (!user.checked) {
+                    continue;
+                }
+
+                for (let userTask of this.userTaskList) {
+                    if (userTask.userName != user.name) {
+                        continue;
+                    }
+                    let task = this.getTask(userTask.taskName);
+                    if (!task.checked) {
+                        continue;
+                    }
+
+                    // 列出人天
+                    let userTaskDay = {
+                        userName: user.name,
+                        days: [],
+                    };
+                    this.userTaskDays.push(userTaskDay);
+                    this.loopDays(day => {
+                        let dayInfo = {
+                            day: "",
+                            taskName: "",
+                            color: "#FFFFFF",
+                        };
+                        userTaskDay.days.push(dayInfo);
+                        if (day >= userTask.startDate && day <= userTask.endDate) {
+                            dayInfo.day = new Date(day).getDate();
+                            dayInfo.taskName = task.name;
+                            dayInfo.color = task.color;
+                        }
+                    });
+                    
+                }
+            }
+        },
+        loopDays: function(callback) {
+            let currentDate = new Date(this.startDate);
+            let endDate = new Date(this.endDate);
+            do {
+                let dayString = $.datepicker.formatDate('yy-mm-dd', currentDate);
+                callback(dayString);
+
+                // 加一天
+                currentDate.setDate(currentDate.getDate() + 1);
+            } while(currentDate <= endDate);
+        },
+        getTask: function(taskName) {
+            for (let task of this.taskList) {
+                if (task.name == taskName) {
+                    return task;
+                }
+            }
+            return null;
+        },
+      },
+      created: function() {
+
+        // 开始日期&结束日期默认值
+        let startDate = new Date();
+        startDate.setDate(startDate.getDate() - 14);
+        this.startDate = $.datepicker.formatDate('yy-mm-dd', startDate);
+
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() + 30);
+        this.endDate = $.datepicker.formatDate('yy-mm-dd', endDate);
+
+        // 收集唯一的用户名称和任务名称
+        this.userTaskList = userTaskList;
+        let userList = [];
+        let taskList = [];
+        for (let userTask of this.userTaskList) {
+            if (!userList.includes(userTask.userName)) {
+                userList.push(userTask.userName);
+            }
+            if (!taskList.includes(userTask.taskName)) {
+                taskList.push(userTask.taskName);
+            }
+        }
+
+        // 初始化用户列表
+        this.userList = [];
+        for (let userName of userList) {
+            this.userList.push({
+                name: userName,
+                checked: true,
+            });
+        }
+
+        // 初始化任务列表
+        this.taskList = [];
+        for (let [index, taskName] of taskList.entries()) {
+            this.taskList.push({
+                name: taskName,
+                color: this.colorList[index],
+                checked: true,
+            });
+        }
+      },
+    });
+</script>
