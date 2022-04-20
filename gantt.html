@@ -1,4 +1,5 @@
 <div id="app">
+    <button v-on:click="editTaskData">编辑数据</button>&nbsp;
     开始日期: <input type="text" v-model="startDate" v-on:change="refreshTable" />
     结束日期: <input type="text" v-model="endDate" v-on:change="refreshTable" />
     <br/>
@@ -22,7 +23,6 @@
         </li>
     </ul>
     <br />
-    <button v-on:click="editTaskData">编辑数据</button>&nbsp;&nbsp;
     <div id="table">
         <ul id="dateList" >
             <li v-for="date in dateList" class="cell" v-bind:style="{'background-color': date.color}">
@@ -120,7 +120,7 @@
     }
     #taskListJson {
         width: 90%;
-        height: 50%;
+        height: 80%;
     }
 </style>
 
@@ -216,6 +216,8 @@
             for (let user of this.userList) {
                 user.checked = shouldCheckAll;
             }
+
+            this.refreshTable();
         },
         checkAllTask: function() {
             let shouldCheckAll = false;
@@ -228,6 +230,8 @@
             for (let task of this.taskList) {
                 task.checked = shouldCheckAll;
             }
+
+            this.refreshTable();
         },
         refreshTable: function() {
 
@@ -241,12 +245,6 @@
 
                 let date = new Date(day);
 
-                // 日期
-                dayInfo.day = date.getDate();
-                if (dayInfo.day == '1') {
-                    dayInfo.day = (date.getMonth() + 1) + "/" + dayInfo.day;
-                }
-
                 // 周六日
                 if (date.getDay() == 6 || date.getDay() == 0) {
                     dayInfo.color = '#CCCCCC';
@@ -257,6 +255,13 @@
                     dayInfo.color = '#fdee00';
                 }
                 
+                // 日期
+                dayInfo.day = date.getDate();
+                if (dayInfo.day == '1') {
+                    dayInfo.day = (date.getMonth() + 1) + "/" + dayInfo.day;
+                    dayInfo.color = '#89cff0';
+                }
+
             });
 
             // 人员任务
