@@ -371,7 +371,7 @@
             for (let [index, taskName] of taskList.entries()) {
                 this.taskList.push({
                     name: taskName,
-                    color: this.colorList[index],
+                    color: this.colorList[index % this.colorList.length],
                     checked: true,
                 });
             }
