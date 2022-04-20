@@ -1,18 +1,12 @@
 <script>
 var userTaskList = [
-    {userName: 'hello',taskName: "不符合三流合一（即发票抬头特批），合同打特批单标记，业务费用包比例按照特批单标记走",startDate: "2022-04-10",endDate: "2022-05-10",},
-    {
-        userName: '人名1',
-        taskName: "任务1",
-        startDate: "2022-04-18",
-        endDate: "2022-04-20",
-    },
-    {
-        userName: '测试:李文思汗',
-        taskName: "任务2",
-        startDate: "2022-04-19",
-        endDate: "2022-04-21",
-    },
+{userName: "销售审批线上化2.0",taskName: "P1销售审批线上化2.0",startDate: "2022-05-07",endDate: "2022-05-07",},
+{userName: "活动系统资料同步钉盘二期优化",taskName: "P1活动系统资料同步钉盘二期优化",startDate: "2022-04-21",endDate: "2022-04-21",},
+{userName: "不符合三流合一（即发票抬头特批），合同打特批单标记，业务费用包比例按照特批单标记走",taskName: "P1不符合三流合一（即发票抬头特批），合同打特批单标记，业务费用包比例按照特批单标记走",startDate: "2022-04-26",endDate: "2022-04-26",},
+{userName: "目标审核流重构线下审批过了，线上不用再审；如果修改了目标，线上再审",taskName: "P0目标审核流重构线下审批过了，线上不用再审；如果修改了目标，线上再审",startDate: "2022-04-29",endDate: "2022-04-29",},
+{userName: "CRM销售管理功能优化",taskName: "P2CRM销售管理功能优化",startDate: "2022-05-07",endDate: "2022-05-07",},
+{userName: "导入泛微审批中的礼包团队分数",taskName: "P2导入泛微审批中的礼包团队分数",startDate: "2022-04-21",endDate: "2022-04-21",},
+{userName: "预算类型必须与发票内容一致",taskName: "P1预算类型必须与发票内容一致",startDate: "2022-04-19",endDate: "2022-04-19",},
 ];
 </script>
 
@@ -111,8 +105,11 @@ var userTaskList = [
         margin: 0;
     }
     .userTaskDay span {
-        width: 100px;
+        width: auto;
         font-size: 14px;
+        position: relative;
+        z-index: 999;
+        border-right: 0;
     }
     .userTaskDay ul {
         position: absolute;
