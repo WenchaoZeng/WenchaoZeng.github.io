@@ -1,5 +1,6 @@
 <div id="app">
     <button v-on:click="editTaskData">编辑数据</button>&nbsp;
+    <button v-on:click="copyLink">复制链接</button>&nbsp;
     开始日期: <input type="text" v-model="startDate" v-on:change="refreshTable" />
     结束日期: <input type="text" v-model="endDate" v-on:change="refreshTable" />
     <br/>
@@ -128,6 +129,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/lz-string/1.4.4/lz-string.js"></script>
 <script type="text/javascript">
     var app = new Vue({
       el: '#app',
@@ -205,6 +207,23 @@
             this.taskListEditVisible = false;
             let userTaskList = JSON.parse(this.taskListEditJson);
             this.initTaskList(userTaskList);
+        },
+        copyLink: function() {
+            let url = window.location.pathname;
+            let json = JSON.stringify(this.userTaskList);
+            json = LZString.compressToEncodedURIComponent(json);
+            url += "?task_json=" + json;
+            navigator.clipboard.writeText(url);
+        },
+        readTaskListFromUrl: function() {
+            let params = new URLSearchParams(window.location.search);
+            if (!params.has("task_json")) {
+                return;
+            }
+
+            let json = params.get("task_json");
+            json = LZString.decompressFromEncodedURIComponent(json);
+            this.userTaskList = JSON.parse(json);
         },
         checkAllUser: function() {
             let shouldCheckAll = false;
@@ -370,8 +389,13 @@
         endDate.setDate(endDate.getDate() + 30);
         this.endDate = $.datepicker.formatDate('yy-mm-dd', endDate);
 
+        // 尝试从url里读取任务数据
+        this.readTaskListFromUrl();
+        
         this.initTaskList(this.userTaskList);
       },
     });
-    $( document ).tooltip();
+
+    $(document).tooltip();
+
 </script>
