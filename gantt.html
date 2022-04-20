@@ -1,6 +1,6 @@
 <div id="app">
     <button v-on:click="editTaskData">编辑数据</button>&nbsp;
-    <button v-on:click="copyLink">复制链接</button>&nbsp;
+    <button v-on:click="copyLink">生成链接</button>&nbsp;
     开始日期: <input type="text" v-model="startDate" v-on:change="refreshTable" />
     结束日期: <input type="text" v-model="endDate" v-on:change="refreshTable" />
     <br/>
@@ -213,7 +213,7 @@
             let json = JSON.stringify(this.userTaskList);
             json = LZString.compressToEncodedURIComponent(json);
             url += "?task_json=" + json;
-            navigator.clipboard.writeText(url);
+            window.location = url;
         },
         readTaskListFromUrl: function() {
             let params = new URLSearchParams(window.location.search);
