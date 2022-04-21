@@ -35,7 +35,7 @@
                 <a v-bind:href="'#user_' + userTaskDay.userIndex">{{ userTaskDay.userName }}</a>
             </span>
             <ul>
-                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName"><a v-bind:href="'#task_' + day.taskIndex">{{day.day}}</a></li>
+                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName + '\n\n' + userTaskDay.userName + ': ' + day.userTaskDetail"><a v-bind:href="'#task_' + day.taskIndex">{{day.day}}</a></li>
             </ul>
         </div>
     </div>
@@ -145,6 +145,7 @@
             {
                 userName: 'xx',
                 taskName: "xxx",
+                userTaskDetail: "yyyy",
                 startDate: "2022-04-10",
                 endDate: "2022-05-10",
             },
@@ -204,6 +205,7 @@
                         day: "xx",
                         taskIndex: 0,
                         taskName: "yy",
+                        userTaskDetail: "yyyy",
                         color: "#cd9575"
                     },
                 ],
@@ -334,6 +336,7 @@
                             dayInfo.day = new Date(day).getDate();
                             dayInfo.taskIndex = task.taskIndex;
                             dayInfo.taskName = task.name;
+                            dayInfo.userTaskDetail = userTask.userTaskDetail;
                             dayInfo.color = task.color;
                         }
                     });
@@ -416,6 +419,10 @@
       },
     });
 
-    $(document).tooltip();
+    $(document).tooltip({
+        content: function() {
+            return $(this).prop('title').replace("\n", "<br/>");
+        }
+    });
 
 </script>
