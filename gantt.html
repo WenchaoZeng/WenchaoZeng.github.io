@@ -42,7 +42,8 @@
     <div id="taskListEdit" v-if="taskListEditVisible">
         <textarea id="taskListJson" v-model="taskListEditJson"></textarea>
         <br/>
-        <button v-on:click="editTaskDataConfirm">确定</button>
+        <button v-on:click="editTaskDataConfirm">确定</button>&nbsp;
+        <button v-on:click="editTaskDataCancel">取消</button>
     </div>
 </div>
 
@@ -205,17 +206,20 @@
             this.taskListEditJson = JSON.stringify(this.userTaskList, null, "  ");
         },
         editTaskDataConfirm: function() {
-            this.taskListEditVisible = false;
             let userTaskList = JSON.parse(this.taskListEditJson);
             this.initTaskList(userTaskList);
             this.setLink();
+            this.taskListEditVisible = false;
+        },
+        editTaskDataCancel: function() {
+            this.taskListEditVisible = false;
         },
         setLink: function() {
             let url = window.location.pathname;
             let json = JSON.stringify(this.userTaskList);
             json = LZString.compressToEncodedURIComponent(json);
             url += "?task_json=" + json;
-            window.location = url;
+            window.history.replaceState(null, document.title, url) 
         },
         readTaskListFromUrl: function() {
             let params = new URLSearchParams(window.location.search);
