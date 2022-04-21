@@ -7,7 +7,7 @@
     人员:
     <button v-on:click="checkAllUser">全选/取消</button>
     <ul id="userList" class="checkList">
-        <li v-bind:id="'user_' + index" v-for="(user, index) in userList" :key="user.name">
+        <li v-bind:id="'user_' + index" v-for="(user, index) in userList">
             <label>
                 <input type="checkbox" v-model="user.checked" v-on:change="refreshTable" > {{ user.name }}
             </label>
@@ -17,7 +17,7 @@
     任务:
     <button v-on:click="checkAllTask">全选/取消</button>
     <ul id="taskList" class="checkList">
-        <li v-for="task in taskList" :key="task.name">
+        <li v-for="(task, index) in taskList" v-bind:id="'task_' + index">
             <label v-bind:style="{'background-color': task.color}">
             <input type="checkbox" v-model="task.checked" v-on:change="refreshTable"> {{ task.name }}
         </label>
@@ -35,7 +35,7 @@
                 <a v-bind:href="'#user_' + userTaskDay.userIndex">{{ userTaskDay.userName }}</a>
             </span>
             <ul>
-                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName">{{day.day}}</li>
+                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName"><a v-bind:href="'#task_' + day.taskIndex">{{day.day}}</a></li>
             </ul>
         </div>
     </div>
@@ -90,6 +90,11 @@
         border: 1px solid #DDDDDD;
         margin: 0;
         overflow: hidden;
+    }
+
+    .cell a {
+        color: black;
+        text-decoration: none;
     }
 
     #dateList {
@@ -150,7 +155,7 @@
         endDate: "2001-04-01",
         colorList: [    
             '#5d8aa8',
-            '#e32636',
+            '#ffa6c9',
             '#ffbf00',
             '#9966cc',
             '#a4c639',
@@ -159,7 +164,7 @@
             '#008000',
             '#fbceb1',
             '#00ffff',
-            '#4b5320',
+            '#87a96b',
             '#b2beb5',
             '#007fff',
             '#a52a2a',
@@ -167,6 +172,9 @@
             '#ffe135',
             '#3d2b1f',
             '#873260',
+            '#ffff31',
+            '#f0e130',
+            '#1e90ff',
         ],
         userList: [
             {
@@ -189,11 +197,12 @@
         ],
         userTaskDays: [
             {
-                userIndex: 1,
+                userIndex: 0,
                 userName: "xx",
                 days: [
                     {
                         day: "xx",
+                        taskIndex: 0,
                         taskName: "yy",
                         color: "#cd9575"
                     },
@@ -323,6 +332,7 @@
                         userTaskDay.days.push(dayInfo);
                         if (day >= userTask.startDate && day <= userTask.endDate) {
                             dayInfo.day = new Date(day).getDate();
+                            dayInfo.taskIndex = task.taskIndex;
                             dayInfo.taskName = task.name;
                             dayInfo.color = task.color;
                         }
@@ -343,8 +353,9 @@
             } while(currentDate <= endDate);
         },
         getTask: function(taskName) {
-            for (let task of this.taskList) {
+            for (let [index, task] of this.taskList.entries()) {
                 if (task.name == taskName) {
+                    task.taskIndex = index;
                     return task;
                 }
             }
