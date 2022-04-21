@@ -305,6 +305,7 @@
             // 根据不同情况对数据进行动态排序
             let isAllUserChecked = this.isAllUserChecked();
             let userTaskList = Array.from(this.userTaskList);
+            let _this = this;
             userTaskList.sort(function (a, b) {
 
                 // 按人排序
@@ -318,9 +319,11 @@
 
                 // 按项目排序
                 if (isAllUserChecked) {
-                    if (a.taskName > b.taskName) {
+                    let index1 = _this.getTask(a.taskName).taskIndex;
+                    let index2 = _this.getTask(b.taskName).taskIndex;
+                    if (index1 > index2) {
                         return 1;
-                    } else if (a.taskName < b.taskName) {
+                    } else if (index1 < index2) {
                         return -1;
                     }
                 }
