@@ -7,10 +7,10 @@
     人员:
     <button v-on:click="checkAllUser">全选/取消</button>
     <ul id="userList" class="checkList">
-        <li v-for="user in userList" :key="user.name">
+        <li v-bind:id="'user_' + index" v-for="(user, index) in userList" :key="user.name">
             <label>
-            <input type="checkbox" v-model="user.checked" v-on:change="refreshTable" > {{ user.name }}
-        </label>
+                <input type="checkbox" v-model="user.checked" v-on:change="refreshTable" > {{ user.name }}
+            </label>
         </li>
     </ul>
     <br />
@@ -32,7 +32,7 @@
         </ul>
         <div class="userTaskDay" v-for="userTaskDay in userTaskDays" :key="userTaskDay.id">
             <span class="cell">
-            {{ userTaskDay.userName }}
+                <a v-bind:href="'#user_' + userTaskDay.userIndex">{{ userTaskDay.userName }}</a>
             </span>
             <ul>
                 <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName">{{day.day}}</li>
@@ -189,6 +189,7 @@
         ],
         userTaskDays: [
             {
+                userIndex: 1,
                 userName: "xx",
                 days: [
                     {
@@ -292,7 +293,7 @@
 
             // 人员任务
             this.userTaskDays = [];
-            for (let user of this.userList) {
+            for (let [userIndex, user] of this.userList.entries()) {
                 if (!user.checked) {
                     continue;
                 }
@@ -308,6 +309,7 @@
 
                     // 列出人天
                     let userTaskDay = {
+                        userIndex: userIndex,
                         userName: user.name,
                         days: [],
                     };
