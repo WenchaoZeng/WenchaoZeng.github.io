@@ -35,7 +35,7 @@
                 <a v-bind:href="'#user_' + userTaskDay.userIndex">{{ userTaskDay.userName }}</a>
             </span>
             <ul>
-                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName + '\n\n' + userTaskDay.userName + ': ' + day.userTaskDetail"><a v-bind:href="'#task_' + day.taskIndex">{{day.day}}</a></li>
+                <li v-for="day in userTaskDay.days" class="cell" v-bind:style="{'background-color': day.color}" v-bind:title="day.taskName + '$$$$' + userTaskDay.userName + '$$$$' + day.userTaskDetail"><a v-bind:href="'#task_' + day.taskIndex">{{day.day}}</a></li>
             </ul>
         </div>
     </div>
@@ -421,7 +421,7 @@
 
     $(document).tooltip({
         content: function() {
-            return $(this).prop('title').replace("\n", "<br/>");
+            return $(this).prop('title').replaceAll("$$", "<br/>");
         }
     });
 
