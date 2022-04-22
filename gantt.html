@@ -231,14 +231,24 @@
             window.history.replaceState(null, document.title, url) 
         },
         readTaskListFromUrl: function() {
+            
+            let json = '';
             let params = new URLSearchParams(window.location.search);
-            if (!params.has("task_json")) {
-                return;
+            
+            // 从本页面url里直接读取任务数据
+            if (params.has("task_json")) {
+                json = params.get("task_json");
+                json = LZString.decompressFromEncodedURIComponent(json);
+                this.userTaskList = JSON.parse(json);
             }
 
-            let json = params.get("task_json");
-            json = LZString.decompressFromEncodedURIComponent(json);
-            this.userTaskList = JSON.parse(json);
+            // 从外部资源里读取任务数据
+            if (params.has("task_url")) {
+                let url = params.get('task_url');
+                $.get(url).then(userTaskList => {
+                    this.initTaskList(userTaskList);
+                });
+            }
         },
         checkAllUser: function() {
             let shouldCheckAll = false;
