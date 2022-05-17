@@ -30,6 +30,13 @@
 <button id="render" onclick="doRender();">计算结果</button>
 <div id="resultContainer">结果: <span id="result"></span></div>
 
+<script>
+    // 跳转到新的站点, 这个站点废弃了.
+    let url = window.location.href;
+    url = url.replaceAll("https://zwc.name/", "http://wenchao.xyz/");
+    url = url.replaceAll("http://zwc.name/", "http://wenchao.xyz/");
+    window.location.href = url;
+</script>
 
 <script>
     document.getElementById("input").focus();

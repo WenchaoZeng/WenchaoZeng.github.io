@@ -1,3 +1,11 @@
+<script>
+    // 跳转到新的站点, 这个站点废弃了.
+    let url = window.location.href;
+    url = url.replaceAll("https://zwc.name/", "http://wenchao.xyz/");
+    url = url.replaceAll("http://zwc.name/", "http://wenchao.xyz/");
+    window.location.href = url;
+</script>
+
 <div id="app">
     <div  class="task" v-for="task in taskList">
         <h2 class="name">{{ task.name }}</h2>
